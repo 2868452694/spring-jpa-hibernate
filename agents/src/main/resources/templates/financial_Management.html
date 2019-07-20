@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<html>
+<head>
+    <title>财务管理</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <script th:src="@{/resource/scripts/123.js}"></script>
+    <script th:src="@{/resource/scripts/js/timeTo.js}"></script>
+    <script th:src="@{/resource/scripts/js/financial_Management.js}"></script>
+    <style>
+        .div_context {
+            margin: 10px 5px;
+            border: 1px solid gray;
+            padding: 10px;
+            height: 70px;
+        }
+
+        .div_contexts {
+            margin: 10px 5px;
+            border: 1px solid gray;
+            top: 1000px;
+            padding: 10px;
+            height: 300px;
+        }
+
+        #div_ul {
+            display: none;
+        }
+
+        #div_ul ul li {
+            display: inline-block
+        }
+
+        #div_ul ul li {
+            background: gray;
+            padding: 5px;
+            margin: 5px;
+        }
+
+        #div_ul ul li:hover {
+            cursor: pointer;
+        }
+
+        #u3 {
+            margin: 10px 0;
+            background: #cccccc;
+            padding: 5px 0;
+        }
+
+        #u3 div {
+            margin: 10px 0
+        }
+    </style>
+</head>
+<body>
+
+<div class="div_context">
+    <div>
+        <div>搜索用户:<input type="text" name="user">输入后自动搜索</div>
+        <div id="div_ul">
+            <ul>
+                <li>halu</li>
+                <li>halu</li>
+                <li>hal删除u</li>
+                <li>ha大lu</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="div_contexts">
+    <div id="u2">
+        操作类型:<select id="u2_input">
+        <option selected value="—请选择—">—请选择—</option>
+        <option value="代理款">代理款</option>
+        <option value="转账">转账</option>
+        <option value="财务打款">财务打款</option>
+        <option value="冻结">冻结</option>
+        <option value="扣费">扣费</option>
+        <option value="代理款冲抵">代理款冲抵</option>
+        <option value="消费">消费</option>
+        <option value="退费">退费</option>
+        <option value="返款">返款</option>
+        <option value="罚款">罚款</option>
+        <option value="代理款预录">代理款预录</option>
+    </select>
+    </div>
+    <div id="u3">
+        <div>操作资金:<input id="u3_input" type="text" value=""/></div>
+
+        <div>重要提示:输入的资金数,<strong style="color: red">正数(1000)</strong>为向账户增加1000元,<strong
+                style="color: red">负数(-1000)</strong>为向账户减少1000元,精确到小数后两位
+        </div>
+    </div>
+    <div>
+        <div>操作备注:</div>
+        <div><textarea cols="12" rows="5"></textarea></div>
+    </div>
+    <div>
+        <img th:src="@{/images/u10.png}" id="img"/>
+    </div>
+    <div style="color: red">重要提示:输入的资金数,<strong>正数(1000)</strong>为向账户增加1000元,<strong>负数(-1000)</strong>为向账户减少1000元,精确到小数后两位
+    </div>
+</div>
+
+</div>
+
+</body>
+</html>

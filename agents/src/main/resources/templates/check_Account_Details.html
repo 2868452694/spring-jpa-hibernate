@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<html>
+  <head>
+    <title>查看账户明细</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <script th:src="@{/resource/scripts/jquery-1.4.2.js}"></script>
+      <script th:src="@{/resource/scripts/jquery-1.7.1.min.js}"></script>
+    <script th:src="@{/resource/scripts/js/check_Account_Details.js}"></script>
+    <style>
+        #div_table table{position: absolute;width:960px;}
+        #div_table table tr:nth-of-type(1){background:linear-gradient(to top,gray,#FFFFFF);}
+        table{ border:1px solid grey;  border-collapse: collapse;/*边框会合并为一个单一的边框*/}
+        /*table tr {border: 1px solid;}*/
+        table tr td{border: 1px solid gray;}
+        #div_table .div{top: 340px;position: absolute;width:960px;height: 40px;display: flex;justify-content: center;}
+        .div div{border:1px solid;border-radius: 10px;}
+        .div div span{float: left;width: 40px;text-align: center;line-height: 40px;margin: 0;padding: 0;display: inline-block; border-right: 1px solid; }
+        .div div span:nth-of-type(1){border-left: 0; }
+        .div div span:last-child{  border-right: 0;}
+       #esc{position: absolute;width: 500px;top: 40px;left: 780px;}
+       #esc a {text-decoration: none;color: black;}
+       .div div span:hover{cursor: pointer; background: ghostwhite;}
+        #u2{display: flex;justify-content: center;}
+      /*#esc span{position: absolute;width: 500px;}*/
+    </style>
+
+  </head>
+  <body>
+ <div id="u2" >
+
+     <p>操作时间:<input name="time1" type="text"/>至<input name="time2" type="text"/></p>
+     <p><img th:src="@{/images/u9.png}" id="img"></p>
+ </div>
+  <div id="div_table">
+    <table style="text-align: center">
+          <tr>
+            <td>序列</td>
+            <td>账务类型</td>
+            <td>账务资金</td>
+            <td>账户余额</td>
+            <td>备注信息</td>
+            <td>明细时间</td>
+          </tr>
+
+    </table>
+    <div class="div">
+
+    </div>
+  </div>
+
+  </body>
+</html>

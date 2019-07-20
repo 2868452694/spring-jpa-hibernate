@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<html>
+  <head>
+    <title>关键词审核</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <script th:src="@{/resource/scripts/jquery-1.4.2.js}"></script>
+    <style>
+
+      #div_table table{position: absolute;width:960px;}
+      #div_table table tr:nth-of-type(1){background:linear-gradient(to top,gray,#FFFFFF);}
+      table{ border:1px solid ;  border-collapse: collapse;/*边框会合并为一个单一的边框*/}
+      td div:nth-of-type(1){display: flex;justify-content:space-around;}
+      table tr td{border: 1px solid gray;}
+      #div_table .div{top: 355px;position: absolute;width:960px;height: 40px;display: flex;justify-content: center;}
+      .div div{border:1px solid;border-radius: 10px;}
+      .div div span{float: left;width: 40px;text-align: center;line-height: 40px;margin: 0;padding: 0;display: inline-block; border-right: 1px solid; }
+      .div div span:nth-of-type(1){border-left: 0; }
+      .div div span:last-child{  border-right: 0;}
+      #esc{position: absolute;width: 500px;top: 40px;left: 780px;}
+      a {text-decoration: none;color: black;}
+      .div div span:hover{cursor: pointer; background: ghostwhite;}
+      .start{color:greenyellow;}
+      .stop{color: red;}
+      #div{text-align: center}
+      #divs{border: 1px solid;font-size: 10px;height: 30px;line-height: 20px;text-align: center;margin: 10px 0;}
+    </style>
+
+  </head>
+  <body>
+    <div id="div">
+      <div><h5>关键词审核</h5></div>
+      <div id="divs">
+        <div>  关键词:<input type="text"/><img th:src="@{/images/u9.png}"/>审核 流程:已申请(<代理申请>)>>审核中>>通过>>续费 |审核 流程:已申请(<代理申请>)>>审核中>>不通过</div>
+      </div>
+    </div>
+
+    <div id="div_table">
+      <table style="text-align: center">
+        <tr>
+          <td>序号</td>
+          <td>关键词</td>
+          <td>客户名称</td>
+          <td>代理商</td>
+          <td>申请年限</td>
+          <td>到期日期</td>
+          <td>申请到期状态</td>
+          <td>审核状态</td>
+          <td>使用状态</td>
+          <td>操作</td>
+
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>2</td>
+          <td>2</td>
+          <td>2</td>
+          <td>2</td>
+          <td></td>
+          <td>
+              <select>
+                <option value="0" selected>--请选择--</option>
+                <option value="1">续费</option>
+                <option value="2">不使用</option>
+              </select>
+          </td>
+        </tr>
+
+      </table>
+      <div class="div">
+        <div>
+          <span>首页</span>
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>尾页</span>
+        </div>
+      </div>
+    </div>
+    <script>
+        $(function () {
+            $(".div div span ").click(function () {
+                $(this).css("background","ghostwhite");
+                $(this).siblings().css("background","");
+            })
+        })
+      $("#divs img").click(function () {
+         alert("22")
+      });
+    </script>
+  </body>
+</html>

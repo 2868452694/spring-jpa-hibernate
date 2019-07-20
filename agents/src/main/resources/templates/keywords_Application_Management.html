@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>关键词申请管理</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <script th:src="@{/resource/scripts/123.js}"></script>
+    <script th:src="@{/resource/scripts/js/timeTo.js}"></script>
+    <style>
+
+        #div_table table {
+            position: absolute;
+            width: 960px;
+        }
+
+        #div_table table tr:nth-of-type(1) {
+            background: linear-gradient(to top, gray, #FFFFFF);
+        }
+
+        table {
+            border: 1px solid;
+            border-collapse: collapse; /*边框会合并为一个单一的边框*/
+        }
+
+        td div:nth-of-type(1) {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        table tr td {
+            border: 1px solid gray;
+        }
+
+        #div_table .div {
+            top: 300px;
+            position: absolute;
+            width: 960px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .div div {
+            border: 1px solid;
+            border-radius: 10px;
+        }
+
+        .div div span {
+            float: left;
+            width: 40px;
+            text-align: center;
+            line-height: 40px;
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+            border-right: 1px solid;
+        }
+
+        .div div span:nth-of-type(1) {
+            border-left: 0;
+        }
+
+        .div div span:last-child {
+            border-right: 0;
+        }
+
+        #esc {
+            position: absolute;
+            width: 500px;
+            top: 40px;
+            left: 780px;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .div div span:hover {
+            cursor: pointer;
+            background: ghostwhite;
+        }
+
+        .start {
+            color: greenyellow;
+        }
+
+        .stop {
+            color: red;
+        }
+
+        #divs {
+            padding: 20px 10px;
+            border: 1px solid;
+            margin: 10px 0;
+            height: 100%;
+        }
+
+        #insert, #update {
+            display: none;
+        }
+
+        #insert div {
+            margin: 10px 0;
+        }
+
+        #update div {
+            margin: 10px 0;
+        }
+
+        #insert, #update {
+            position: absolute;
+            border: 1px solid;
+            z-index: 10;
+            background: #eeeeee;
+            padding: 20px;
+            left: 300px;
+        }
+    </style>
+
+</head>
+<body>
+<div id="divs">
+    <div> 关键词:<input id="kwname" name="kwname" type="text"/><img th:src="@{/images/u9.png}" id="cha"/></div>
+</div>
+<div id="div_insert">
+
+    <div id="insert">
+        <div><strong>开通APP</strong></div>
+        <div>登录账号:<input type="text">&nbsp;&nbsp;&nbsp;&nbsp;登录密码:<input type="text"></div>
+        <div>关键词:<span>ddd</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;企业名称:<span>dd</span></div>
+        <div>价格:<span>26000</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;服务类型:<span>上传苹果商城</span></div>
+        <div>
+            <input type="button" value="保存"/>
+            <input type="button" class="esc" value="取消"/>
+        </div>
+    </div>
+    <div id="update">
+        <div><strong>当前正在为<strong>112</strong>续费<span style="color:red">[当前账户余额:1231312]</span></strong></div>
+        <div>
+            <div>客户名称:<input type="text" name="upname" readonly></div>
+            <div>关键词:<input type="text" name="upname" readonly></div>
+            <div>服务类别:
+                <select>
+                    <option selected>上传苹果商城</option>
+                    <option>不上传苹果商城</option>
+                </select>
+            </div>
+            <div>服务年限:
+                <select>
+                    <option selected>--请选择--</option>
+                    <option>1年</option>
+                    <option>2年</option>
+                    <option>3年</option>
+                    <option>4年</option>
+                    <option>5年</option>
+                    <option>6年</option>
+                    <option>7年</option>
+                    <option>8年</option>
+                    <option>9年</option>
+                    <option>10年</option>
+                </select>
+            </div>
+            <div>价格:<input type="text" name="upname"></div>
+            <div>
+                <input type="button" class="upSub" value="保存"/>
+                <input type="button" class="esc" value="取消"/>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div id="div_table">
+    <table style="text-align: center">
+        <tr>
+            <td>序号</td>
+            <td>关键词</td>
+            <td>客户名称</td>
+            <td>代理商</td>
+            <td>申请年限</td>
+            <td>到期日期</td>
+            <td>申请到期状态</td>
+            <td>审核状态</td>
+            <td>使用状态</td>
+            <td>app开通状态</td>
+            <td colspan="2">操作</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>2</td>
+            <td>2</td>
+            <td>2</td>
+            <td>2</td>
+            <td></td>
+            <td>通状态</td>
+            <td>
+                <div>
+                    <div><a class="kai">开通APP</a></div>
+                    <div><a class="xu">续费</a></div>
+                </div>
+            </td>
+        </tr>
+
+    </table>
+    <div class="div">
+        <div>
+            <span>首页</span>
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>尾页</span>
+        </div>
+    </div>
+</div>
+<script th:src="@{/resource/scripts/js/keywords_Application_Management.js}"></script>
+</body>
+</html>

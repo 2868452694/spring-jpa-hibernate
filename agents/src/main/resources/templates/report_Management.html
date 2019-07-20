@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<html>
+  <head>
+    <title>报表管理</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <script th:src="@{/resource/scripts/jquery-1.4.2.js}"></script>
+    <style>
+      #div_table table{position: absolute;width:960px;}
+      #div_table table tr:nth-of-type(1){background:linear-gradient(to top,gray,#FFFFFF);}
+      table{ border:1px solid ;  border-collapse: collapse;/*边框会合并为一个单一的边框*/}
+      td div:nth-of-type(1){display: flex;justify-content:space-around;}
+      table tr td{border: 1px solid gray;}
+      #div_table .div{top: 400px;position: absolute;width:960px;height: 40px;display: flex;justify-content: center;}
+      .div div{border:1px solid;border-radius: 10px;}
+      .div div span{float: left;width: 40px;text-align: center;line-height: 40px;margin: 0;padding: 0;display: inline-block; border-right: 1px solid; }
+      .div div span:nth-of-type(1){border-left: 0; }
+      .div div span:last-child{  border-right: 0;}
+      #esc{position: absolute;width: 500px;top: 40px;left: 780px;}
+      a {text-decoration: none;color: black;}
+      .div div span:hover{cursor: pointer; background: ghostwhite;}
+      #div_context div{margin: 0;padding: 0 10px;}
+      #div_context{display: flex;flex-direction: row;justify-content: flex-start;border: 1px solid;margin: 10px 0}
+    </style>
+  </head>
+  <body>
+  <div id="div_context">
+    <!-- Unnamed (下拉列表框) -->
+    <div >
+      <p>操作类型<select >
+        <option selected value="财务报表">财务报表</option>
+        <option value="        代理商账户余额报表">&nbsp; &nbsp; &nbsp; &nbsp; 代理商账户余额报表</option>
+        <option value="        预付款流水报表">&nbsp; &nbsp; &nbsp; &nbsp; 预付款流水报表</option>
+        <option value="        代理商流水报表">&nbsp; &nbsp; &nbsp; &nbsp; 代理商流水报表</option>
+        <option value="产品报表">产品报表</option>
+        <option value="         产品分类数量/金额汇总">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 产品分类数量/金额汇总</option>
+        <option value="消费报表">消费报表</option>
+        <option value="         客户消费汇总">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 客户消费汇总</option>
+      </select></p>
+    </div>
+    <div>
+      <p>操作时间:<input type="text"/>至<input type="text"/></p>
+    </div>
+    <div> <p><img th:src="@{/images/u9.png}" id="img"></p></div>
+  </div>
+
+
+
+
+    <div id="div_table">
+      <table style="text-align: center">
+        <tr>
+          <td>序号</td>
+          <td>代理商名称</td>
+          <td>账户余额</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>个人</td>
+          <td>启用</td>
+
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>个人</td>
+          <td>启用</td>
+
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>个人</td>
+          <td>启用</td>
+
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>个人</td>
+          <td>启用</td>
+
+        </tr>
+
+      </table>
+      <div class="div">
+        <div>
+          <span>首页</span>
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>尾页</span>
+        </div>
+      </div>
+    </div>
+    <script>
+        $(function () {
+            $(".div div span ").click(function () {
+                $(this).css("background","ghostwhite");
+                $(this).siblings().css("background","");
+            })
+        })
+      $("#img").click(function () {
+          alert("查询")
+      })
+    </script>
+  </body>
+</html>

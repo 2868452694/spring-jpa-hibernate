@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+ <html xmlns:th="https://www.thymeleaf.org">
+<html>
+  <head>
+    <title>用户管理</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <script th:src="@{/resource/scripts/jquery-1.4.2.js}"></script>
+    <style>
+        body {margin:0px;background-image:none;position:static;left:auto;width:auto;margin-left:0;margin-right:0;text-align:left;}
+        #u0 {position:absolute;left:46px;top:35px;width:990px;height:737px;}
+        #u0_img {position:absolute;left:0px;top:0px; width:990px;height:737px;}
+
+        #head{position:absolute;z-index: 5;left: 46px;top:137px;width: 990px;height: 65px; display: flex;flex-direction:column;}
+        #head *{list-style: none;margin: 0; padding: 0;}
+        #head ul{display: flex; display: none;}
+        #head #mainUl{display: flex;flex-direction:row;padding-top:8px;width: 70%;margin: 0 auto; color: white;}
+        #head #mainUl li{border-right: 1px solid #ccc; padding-right:0; width: 17%; text-align: center; }
+        #head #mainUl .active{color: #006699; background-color: #EEEEEE; height: 37px;margin-top: -8px; border-radius: 5px 5px 0 0 ; line-height: 37px;}
+        #head>.active{display: flex;width: 70%;margin: 0 auto;justify-content: space-around;text-align: center;}
+        #head>.active>li{padding: 0 10px;border-right: 1px solid #ccc;margin-top: 5px;text-align: center;color: #006699;}
+        #head #mainUl *:hover{cursor:pointer;color: #0033CC;}
+        #head #mainUl~ul *:hover{cursor:pointer;color: #000; }
+        #topRight{position:absolute;z-index: 5;left: 875px;top:40px;font-size: 12px;}
+        #topRight a{ color: #000; text-decoration: none;}
+        #body{ width: 940px;position:absolute;z-index: 5;left: 70px;top:270px; margin:0 auto;height: 480px;}
+        #body *{list-style: none;margin: 0; padding: 0;}
+
+        #body #selected{display: flex;flex-direction: column;justify-content:space-between;height: 100%; }
+        #body #selected #selected-head{display:flex;justify-content: space-between;}
+        #body #selected #selected-head .right{display: flex;padding-right: 200px;}
+        #body #selected #selected-head .right div:nth-last-child(1),#body #selected #selected-head .left{cursor:pointer;}
+        #body #selected,#body #selected table{width: 100%;}
+        #body #selected table{margin-top: -350px; text-align: center;}
+        #body #selected table *{border: 1px solid #000; }
+        #body #selected table thead *{background: #ccc;}
+        #body #selected table ul,#body #selected table ul *{border: 0px;}
+        #body #selected table ul{display: flex; justify-content: center;}
+        #body #selected table ul *{border-right:1px solid #000 ;padding:0 10px; }
+        #body #selected table ul *:hover{cursor:pointer;color: #0033CC; }
+        #body #selected table ul *:nth-last-child(1){ border: 0px;}
+        #body #selected #bottom{width: 940px;margin:0 auto;border:0;}
+        #body #selected #bottom #page{list-style: none;margin: 0; padding: 0;display: flex;justify-content: center;}
+        #body #selected #bottom #page li{background-color: #EfefEf;border: 1px solid #ccc;text-align: center;width: 5%;border-radius: 5px;}
+        #body #selected #bottom #page .active{background-color: #ccc;}
+
+        #body #add-update{width: 400px;position:absolute;z-index: 5;left: 30%;top:100px; background-color: #fcefa1;padding: 10px;border-radius: 5px;}
+        #body #add-update>p{text-align: center; margin-bottom: 10px;}
+        #body #add-update form{margin: 0 auto; width: 90%;}
+        #body #add-update form p span{color:red; font-size: 8px;}
+        #body #LOG-Money{background-color: RGB(164,214,233);width: 90%;position:absolute;z-index: 5;left: 5%;top:50px; border: 5px solid #eee; height: 350px;}
+        #body #LOG-Money .title{display: flex; justify-content: space-between; background-color: #cccccc;padding: 5px;}
+        #body #LOG-Money>.head{padding:15px;}
+        #body #LOG-Money .body{background-color: #fff;width: 80%;margin:0 auto; padding:1% 3%; height: 68%; display: flex;justify-content: space-between;flex-direction: column;}
+        #body #LOG-Money .body>.head{display: none; justify-content: center; border: 1px solid #eee;padding-top:5px; }
+        #body #LOG-Money .body>.active{display: flex;}
+        #body #LOG-Money .body>.head p:nth-last-child(1){padding: 2px 5px;}
+        #body #LOG-Money .body table{width: 100%;margin: 0 auto; margin-top: -100px;}
+        #body #LOG-Money .body table thead{background-color: #ccc;}
+        #body #LOG-Money .bottom{width:100%;margin:0 auto;border:0;}
+        #body #LOG-Money .bottom .page{list-style: none;margin: 0; padding: 0;display: flex;justify-content: center;}
+        #body #LOG-Money .bottom .page li{background-color: #EfefEf;border: 1px solid #ccc;text-align: center;width: 5%;border-radius: 5px;}
+        #body #LOG-Money .bottom .page .active{background-color: #ccc;}
+
+        #body #LOG-Money .bottom .page li:hover,#body #selected #bottom #page li:hover{cursor:pointer;background-color: #ccc;}
+        #div_from{display: none;background:gray;position: absolute;top:400px;left:400px;z-index: 100;width: 300px;}
+        #div_from div{padding: 10px;display: flex;justify-content: center;}
+        iframe{position: absolute;top: 254px;left: 50px;width: 980px;height: 510px;border: 0;}
+    </style>
+  </head>
+  <body>
+
+  <div id="topRight">
+      <span>欢迎你:<span id="names"></span></span>
+      <a href="javascript:" id="up">修改密码</a>
+      <a href="#" id="exit">退出</a>
+  </div>
+  <div id="div_from">
+      <form>
+         <div>请输入原密码:<input type="text" name="oldpassword" id="oldpassword"></div>
+          <div> 请输入新密码:<input type="password" name="newpassword" id="newpassword"></div>
+          <div>  请确认新密码:<input type="password" name="comnepwd" id="comnepwd"></div>
+          <div> <input type="button" id="save" value="提交">
+          <input type="button"  id="rest" value="取消"></div>
+      </form>
+  </div>
+  <div id="head">
+      <ul id="mainUl">
+          <li qiangerzi="ul1">代理商管理</li>
+          <li qiangerzi="ul2">门户管理</li>
+          <li qiangerzi="ul3" >报表管理</li>
+          <li qiangerzi="ul4">系统管理</li>
+          <li qiangerzi="ul5" >系统配置管理</li>
+      </ul>
+      <ul class="ul1 active ">
+          <li  id="keyword_Application">关键词申请</li>
+          <li id="agent_Customer_Management">代理商客户管理</li>
+          <li id="agent_Advance_Payment">代理商预付款</li>
+          <li id="keywords_Application_Management">关键词申请管理</li>
+          <li id="operation_Log">操作日志</li>
+      </ul>
+      <ul class="ul2 ">
+          <li id="portal_Management">门户管理</li>
+      </ul>
+      <ul class="ul3 ">
+          <li  id="report_Management">报表管理</li>
+      </ul>
+      <ul class="ul4">
+          <li id="financial_Management">财务管理</li>
+          <li id="role_Management">角色管理</li>
+          <li id="role_Authority_Management">角色权限管理</li>
+          <li id="user_Management">用户管理</li>
+          <li id="keywords_Audit">关键词审核</li>
+      </ul>
+      <ul class="ul5 ">
+          <li id="financial_Types">财务类型</li>
+          <li id="type_Of_Service">服务类型</li>
+          <li id="length_Of_Service">服务年限</li>
+          <li id="address_Of_The_APP">APP地址</li>
+          <li id="client_Type">客户类型</li>
+          <li id="certificate_Type">证件类型</li>
+          <li id="preferential_Type">优惠类型</li>
+      </ul>
+  </div>
+  <span style="font-size: 12px;position:absolute;z-index: 5;left: 55px;top:220px;" id="test"></span>
+
+
+  <div id="u0" class="ax_图片">
+      <img id="u0_img" class="img " th:src="@{/images/background.png}"/>
+      <div id="u1" class="text"></div>
+  </div>
+  <div id="div_iframe">
+  <iframe id="iframe" src="/agent/page/agent_Manage.do">
+
+  </iframe>
+  </div>
+    <script>
+        $(function () {
+            $("#mainUl li").eq(0).attr("class","active");
+            var test= $("#mainUl li").eq(0).html();
+            $("#test").html(test+"\\查看账户信息");
+
+        });
+        $("#mainUl li").click(function () {
+            $(this).siblings().removeAttr("class");
+            $(this).attr("class","active");
+            $("#test").html($(this).html());
+            $("#head ul").removeClass("active");
+            $("."+$(this).attr("qiangerzi")).addClass("active");
+
+        });
+        $("#up").click(function () {
+            $("#div_from ").show();
+        });
+        $("#rest").click(function () {
+            $("input[type=text]").val("");
+            $("#div_from ").hide();
+        });
+
+    </script>
+  <script th:src="@{/resource/scripts/js/agentManage.js}"></script>
+  <script th:src="@{/resource/scripts/js/AgentManages.js}"></script>
+  </body>
+</html>

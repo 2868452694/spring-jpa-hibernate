@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<html>
+  <head>
+    <title>关键词申请</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <script th:src="@{/resource/scripts/jquery-1.4.2.js}"></script>
+    <style>
+     .div_context{padding: 10px;}
+        #div_contexts{border: 1px solid;padding: 20px;}
+        #div_contexts div{padding: 2px;}
+        #div_contexts div p{margin: 0;}
+      #div_ul{display: none; position: absolute;z-index: 10;background: greenyellow;width: 800px;}
+      #div_ul ul li{display: inline-block;}
+      #div_ul ul li{background: gray;padding: 5px;margin: 5px 5px;}
+     #div_ul ul li div{padding: 5px;}
+      #div_ul ul li:hover{cursor: pointer;}
+      .span{color: red;}
+      .class{font-size: 10px;}
+    </style>
+  </head>
+  <body>
+  <div class="div_context">
+    <div>
+      <div>搜索客户:<input type="text" name="user">输入后自动搜索<span class="span">[当前账户余额:1454545]</span></div>
+      <div id="div_ul">
+        <ul>
+          <li>
+            <div class="class">
+              客户类型:sss
+            </div>
+            <div class="value">
+              法兰克能够进入大厦
+            </div>
+          </li>
+          <li>
+            <div class="class">
+              客户类型:sss
+            </div>
+            <div class="value">
+              法兰克能够进sssss入大厦
+            </div>
+          </li>
+          <li>
+            <div class="class">
+              客户类型:sss
+            </div>
+            <div>
+              法兰克能够进入大厦
+            </div>
+          </li>
+          <li>
+            <div class="class">
+              客户类型:sss
+            </div>
+            <div>
+              法兰克能够进入大厦
+            </div>
+          </li>
+          <li>
+            <div class="class">
+              客户类型:sss
+            </div>
+            <div>
+              法兰克能够进入大厦
+            </div>
+          </li><li>
+          <div class="class">
+            客户类型:sss
+          </div>
+          <div>
+            法兰克能够进入大厦
+          </div>
+        </li><li>
+          <div class="class">
+            客户类型:sss
+          </div>
+          <div>
+            法兰克能够进入大厦
+          </div>
+        </li><li>
+          <div class="class">
+            客户类型:sss
+          </div>
+          <div>
+            法兰克能够进入大厦
+          </div>
+        </li>
+
+
+
+        </ul>
+      </div>
+    </div>
+  </div>
+    <div id="div_contexts">
+      <div>客户名称:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="ke" class="span"></div>
+      <div>关键词:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input></div>
+      <!-- Unnamed (下拉列表框) -->
+      <div id="u2" >
+        <P>服务类别:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="u2_input">
+          <option selected value="——请选择——">——请选择——</option>
+          <option value="上传苹果商城">上传苹果商城</option>
+          <option value="不上传苹果商城">不上传苹果商城</option>
+        </select></P>
+      </div>
+      <!-- Unnamed (下拉列表框) -->
+      <div id="u3" >
+        <P>服务年限:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="u3_input">
+          <option selected value="——请选择——">——请选择——</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="买二赠一">买二赠一</option>
+        </select></P>
+      </div>
+      <div>价格:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input></div>
+      <div><button>提交申请</button></div>
+    </div>
+<script>
+    $("#div_ul ul li").click(function () {
+        $("input[name=user]").val($(this).children(".value").html().trim());
+        $("input[name=ke]").val($(this).children(".value").html().trim());
+        $("#div_ul").hide();
+    });
+    $("input[name=user]").focus(function () {
+        $("#div_ul").show();
+    })
+
+    $("input[name=user]").change(function () {
+        $("#div_ul").hide();
+    });
+
+</script>
+  </body>
+</html>

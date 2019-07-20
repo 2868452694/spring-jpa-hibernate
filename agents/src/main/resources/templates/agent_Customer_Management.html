@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<html>
+  <head>
+    <title>代理商客户管理</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <script th:src="@{/resource/scripts/jquery-1.4.2.js}"></script>
+    <style>
+        #div_table table{position: absolute;width:960px;}
+        #div_table table tr:nth-of-type(1){background:linear-gradient(to top,gray,#FFFFFF);}
+        table{ border:1px solid ;  border-collapse: collapse;/*边框会合并为一个单一的边框*/}
+        td div:nth-of-type(1){display: flex;justify-content:space-around;}
+        table tr td{border: 1px solid gray;}
+        #div_table .div{top: 340px;position: absolute;width:960px;height: 40px;display: flex;justify-content: center;}
+        .div div{border:1px solid;border-radius: 10px;}
+        .div div span{float: left;width: 40px;text-align: center;line-height: 40px;margin: 0;padding: 0;display: inline-block; border-right: 1px solid; }
+        .div div span:nth-of-type(1){border-left: 0; }
+        .div div span:last-child{  border-right: 0;}
+        #esc{position: absolute;width: 500px;top: 40px;left: 780px;}
+         a {text-decoration: none;color: black;}
+        .div div span:hover{cursor: pointer; background: ghostwhite;}
+        .start{color:greenyellow;}
+        .stop{color: red;}
+      #div0{display: flex;justify-content: center;margin: 20px 0;}
+    </style>
+
+  </head>
+  <body>
+  <div id="div0">
+    客户名称:<input/><img th:src="@{/images/u9.png}" id="img"/>
+  </div>
+  <div >
+    <!---添加客户-->
+    <a href="/agent/page/add_The_Customer.do">
+      <img th:src="@{/images/u15.png}" id="imgs"/>
+     </a>
+  </div>
+    <div id="div_table">
+      <table style="text-align: center">
+        <tr>
+          <td>序号</td>
+          <td>客户名称</td>
+          <td>法人代表</td>
+          <td>注册时间</td>
+          <td>类型</td>
+          <td>状态</td>
+          <td colspan="3">操作</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>嘉顿实业</td>
+          <td>法人一</td>
+          <td>2012-01-01</td>
+          <td>企业</td>
+          <td class="stop">停用</td>
+          <td>
+            <div>
+            <div> <a href="/agent/page/add_The_Customer.do">查看</a></div>
+
+            <div> <a href="/agent/page/add_The_Customer.do">修改</a></div>
+
+            <div> <a href="javaScript:void(0)" class=" state start">启用</a></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>嘉顿实业</td>
+          <td>法人一</td>
+          <td>2012-01-01</td>
+          <td>企业</td>
+          <td class="stop">停用</td>
+          <td>
+            <div>
+              <div> <a href="">查看</a></div>
+
+              <div> <a href="/agent/page/add_The_Customer.do?portalId=1">修改</a></div>
+
+              <div> <a href="#">启用</a></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>嘉顿实业</td>
+          <td>法人一</td>
+          <td>2012-01-01</td>
+          <td>企业</td>
+          <td>启用</td>
+          <td>
+            <div>
+              <div> <a href="">查看</a></div>
+
+              <div> <a href="">修改</a></div>
+
+              <div> <a href="" class="stop">停用</a></div>
+            </div>
+          </td>
+        </tr> <tr>
+        <td>1</td>
+        <td>嘉顿实业</td>
+        <td>法人一</td>
+        <td>2012-01-01</td>
+        <td>企业</td>
+        <td class="stop">启用</td>
+        <td>
+          <div>
+            <div> <a href="">查看</a></div>
+
+            <div> <a href="">修改</a></div>
+
+            <div> <a href="" class="stop">停用</a></div>
+          </div>
+        </td>
+      </tr>
+
+
+      </table>
+      <div class="div">
+        <div>
+          <span>首页</span>
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>尾页</span>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+      $(function () {
+          $(".div div span ").click(function () {
+              $(this).css("background","ghostwhite");
+              $(this).siblings().css("background","");
+          })
+      })
+      $(".state").click(function(){
+          alert($(this).html());
+      });
+    $("#img").click(function () {
+        alert("查询");
+    });
+  </script>
+</html>

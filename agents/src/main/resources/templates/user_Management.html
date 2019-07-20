@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<html>
+  <head>
+    <title>用户管理</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <script th:src="@{/resource/scripts/jquery-1.4.2.js}"></script>
+      <script th:src="@{/resource/scripts/jquery-1.7.1.min.js}"></script>
+    <script th:src="@{/resource/scripts/js/UserManagement.js}"></script>
+    <style>
+      body {margin:0px;background-image:none;position:static;left:auto;width:auto;margin-left:0;margin-right:0;text-align:left;}
+      #u0 {position:absolute;left:46px;top:35px;width:990px;height:737px;}
+      #u0_img {position:absolute;left:0px;top:0px; width:990px;height:737px;}
+
+      #head{position:absolute;z-index: 5;left: 46px;top:137px;width: 990px;height: 65px; display: flex;flex-direction:column;}
+      #head *{list-style: none;margin: 0; padding: 0;}
+      #head ul{display: flex; display: none;}
+      #head #mainUl{display: flex;flex-direction:row;padding-top:8px;width: 70%;margin: 0 auto; color: white;}
+      #head #mainUl li{border-right: 1px solid #ccc; padding-right:0; width: 17%; text-align: center; }
+      #head #mainUl .active{color: #006699; background-color: #EEEEEE; height: 37px;margin-top: -8px; border-radius: 5px 5px 0 0 ; line-height: 37px;}
+      #head>.active{display: flex;width: 70%;margin: 0 auto;justify-content: space-around;text-align: center;}
+      #head>.active>li{padding: 0 10px;border-right: 1px solid #ccc;margin-top: 5px;text-align: center;color: #006699;}
+      #head #mainUl *:hover{cursor:pointer;color: #0033CC;}
+      #head #mainUl~ul *:hover{cursor:pointer;color: #000; }
+      #topRight{position:absolute;z-index: 5;left: 875px;top:40px;font-size: 12px;}
+      #topRight a{ color: #000; text-decoration: none;}
+      #body{ width: 940px;position:absolute;z-index: 5;left: 10px;top: 10px; margin:0 auto;height: 450px;}
+      #body *{list-style: none;margin: 0; padding: 0;}
+
+      #body #selected{display: flex;flex-direction: column;justify-content:space-between;height: 100%; }
+      #body #selected #selected-head{display:flex;justify-content: space-between;}
+      #body #selected #selected-head .right{display: flex;padding-right: 200px;}
+      #body #selected #selected-head .right div:nth-last-child(1),#body #selected #selected-head .left{cursor:pointer;}
+      #body #selected,#body #selected table{width: 100%;}
+      #body #selected table{margin-top: -350px; text-align: center;}
+      #body #selected table *{border: 1px solid #000; }
+      #body #selected table thead *{background: #ccc;}
+      #body #selected table ul,#body #selected table ul *{border: 0px;}
+      #body #selected table ul{display: flex; justify-content: center;}
+      #body #selected table ul *{border-right:1px solid #000 ;padding:0 10px; }
+      #body #selected table ul *:hover{cursor:pointer;color: #0033CC; }
+      #body #selected table ul *:nth-last-child(1){ border: 0px;}
+      #body #selected #bottom{width: 940px;margin:0 auto;border:0;}
+      #body #selected #bottom #page{list-style: none;margin: 0; padding: 0;display: flex;justify-content: center;}
+      #body #selected #bottom #page li{background-color: #EfefEf;border: 1px solid #ccc;text-align: center;width: 5%;border-radius: 5px;}
+      #body #selected #bottom #page .active{background-color: #ccc;}
+      table{position: absolute;top: 400px}
+      #body #add-update{width: 400px;position:absolute;z-index: 5;left: 30%;top:100px; background-color: #fcefa1;padding: 10px;border-radius: 5px;}
+      #body #add-update>p{text-align: center; margin-bottom: 10px;}
+      #body #add-update form{margin: 0 auto; width: 90%;}
+      #body #add-update form p span{color:red; font-size: 8px;}
+      #body #LOG-Money{background-color: RGB(164,214,233);width: 90%;position:absolute;z-index: 5;left: 5%;top:50px; border: 5px solid #eee; height: 350px;}
+      #body #LOG-Money .title{display: flex; justify-content: space-between; background-color: #cccccc;padding: 5px;}
+      #body #LOG-Money>.head{padding:15px;}
+      #body #LOG-Money .body{background-color: #fff;width: 80%;margin:0 auto; padding:1% 3%; height: 68%; display: flex;justify-content: space-between;flex-direction: column;}
+      #body #LOG-Money .body>.head{display: none; justify-content: center; border: 1px solid #eee;padding-top:5px; }
+      #body #LOG-Money .body>.active{display: flex;}
+      #body #LOG-Money .body>.head p:nth-last-child(1){padding: 2px 5px;}
+      #body #LOG-Money .body table{width: 100%;margin: 0 auto; margin-top: -100px;}
+      #body #LOG-Money .body table thead{background-color: #ccc;}
+      #body #LOG-Money .bottom{width:100%;margin:0 auto;border:0;}
+      #body #LOG-Money .bottom .page{list-style: none;margin: 0; padding: 0;display: flex;justify-content: center;}
+      #body #LOG-Money .bottom .page li{background-color: #EfefEf;border: 1px solid #ccc;text-align: center;width: 5%;border-radius: 5px;}
+      #body #LOG-Money .bottom .page .active{background-color: #ccc;}
+
+      #body #LOG-Money .bottom .page li:hover,#body #selected #bottom #page li:hover{cursor:pointer;background-color: #ccc;}
+      #div_from{display: none;}
+     #LOG-Money{display: none;}
+      #add-update{display: none;}
+    </style>
+  </head>
+  <body>
+
+  <div id="body">
+    <div id="selected">
+      <div id="selected-head">
+
+        <div class="left" id="div_insert">
+          <img id="u7_img" class="img " th:src="@{/images/u8.png}"/>
+
+          <div id="u8" class="text"></div>
+        </div>
+
+        <div class="right">
+
+          <div id="u2" class="ax_文本框_单行_">
+            <span>用户名称:</span>
+            <input id="selectedByUserName" type="text"/>
+          </div>
+
+
+          <div id="u3" class="ax_下拉列表框">
+            <span >角色:</span>
+            <select id="selectedByUser">
+              <!--<option selected value="—请选择—">—请选择—</option>
+              <option value="系统管理员">系统管理员</option>
+              <option value="代理商">代理商</option>
+              <option value="财务">财务</option>
+              <option value="客服">客服</option>
+              <option value="市场">市场</option>
+              <option value="大区经理">大区经理</option>
+              <option value="渠道经理">渠道经理</option>-->
+            </select>
+          </div>
+
+
+          <div id="u4" class="ax_下拉列表框">
+            <span>是否启用:</span>
+            <select id="selectedByIsOpen">
+              <option selected value="0">启用</option>
+              <option value="1">未启用</option>
+            </select>
+          </div>
+          <div><img id="selectedSubmit" class="img " th:src="@{/images/u9.png}"/></div>
+
+
+
+        </div>
+      </div>
+
+      <table>
+        <tr>
+            <td>登录账号</td>
+            <td>用户名称</td>
+            <td>角色</td>
+            <td>最后一次时间</td>
+            <td>是否启用</td>
+            <td>操作</td>
+        </tr>
+      </table>
+      <div id="bottom">
+        <ul id="page">
+          <li>首页</li>
+          <li class="active">1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>尾页</li>
+        </ul>
+      </div>
+    </div>
+    <div id="add-update">
+      <p>添加代理商用户信息</p>
+      <hr/>
+      <form >
+        <p>
+          <label>登录账号:</label><input type="text" name="loginNumber"/><span>*</span>
+        </p>
+        <p>
+          <label>用户名称:</label><input type="text" name="username"/><span>*</span>
+        </p>
+        <p>
+          <label>登录密码:</label><input type="password" name="password" value="123456"/><span>*默认初始密码123456</span>
+        </p>
+        <p>
+          <label>角色:</label>
+          <select name="Role">
+            <option value="0">请选择;</option>
+          </select>
+          <span>*</span>
+        </p>
+        <p>
+          <label>是否启用:</label>
+          <select name="IsOpen">
+            <option value="启用">
+              启用
+            </option>
+            <option value="停用">
+              停用
+            </option>
+          </select>
+          <span>*</span>
+        </p>
+        <p>
+          <input type="button" value="保存"/>
+          <input type="button"  class="esc" value="取消"/>
+        </p>
+      </form>
+    </div>
+
+            <div id="LOG-Money">
+                <div  class="title"><span>LOG日志</span><span class="esc"><a>X</a></span></div>
+                <div class="head">账号:<span>[username]</span>LOG操作日志</div>
+                <div class="body">
+                    <div class="head ">
+                        <p>操作类型:<select name="type"><option>123123132</option></select></p>
+                        <p>操作时间:<input type="text"/>至<input type="text"/></p>
+
+                    </div>
+                        <div class="head active">
+                            <p>操作时间:<input type="text"/></p>
+                            <p><img th:src="@{/images/u9.png}"></p>
+                        </div>
+                    <table border="1px solid #000">
+                        <thead>
+                            <tr>
+                                <th>登陆账户</th>
+                                <th>操作信息</th>
+                                <th>操作时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>登陆账户</td>
+                            <td>操作信息</td>
+                            <td>操作时间</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="bottom">
+                        <ul class="page">
+                            <li>首页</li>
+                            <li class="active">1</li>
+                            <li>2</li>
+                            <li>3</li>
+                            <li>尾页</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+  </div>
+    <script>
+        $("#div_insert img").click(function () {
+            $("#add-update").show();
+        })
+        $("#up").click(function () {
+            $("#add-update").show();
+        });
+        $(".esc").click(function () {
+            $("input[type=text]").val("");
+            $("#add-update").hide();
+            $("#LOG-Money").hide();
+        })
+        $("#log").click(function () {
+          $("#LOG-Money").show();
+      });
+        $("#yu").click(function () {
+            $("#LOG-Money").show();
+        });
+      </script>
+  </body>
+</html>

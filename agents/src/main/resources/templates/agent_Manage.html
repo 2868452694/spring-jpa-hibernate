@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<html>
+  <head>
+    <title>代理商管理</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <script th:src="@{/resource/scripts/jquery-1.4.2.js}"></script>
+    <script th:src="@{/resource/scripts/js/agent_Manage.js}"></script>
+    <style>
+
+      #div_centext div{padding: 10px;}
+      #div_centext a{color: blue;}
+      #esc{position: absolute;width: 500px;top: 40px;left: 780px;}
+      a {text-decoration: none;color: black;}
+      #div_from{display: none;}
+    </style>
+
+  </head>
+  <body>
+
+    <div id="div_centext">
+      <div>
+        <strong id="name"></strong>您上次登录时间 <span id="time"></span>
+      </div>
+      <div>您当前账户余额:<span id="money"></span><a href="/agent/page/check_Account_Details.do">查看账户明细</a></div>
+    </div>
+    <script >
+       /* $("#up").click(function () {
+            $("#div_from ").show();
+        });*/
+   /*     $("#rest").click(function () {
+            $("input[type=text]").val("");
+            $("#div_from ").hide();
+        })*/
+
+    </script>
+
+  </body>
+</html>

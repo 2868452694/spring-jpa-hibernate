@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<html>
+  <head>
+    <title>证件类型</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <script th:src="@{/resource/scripts/jquery-1.4.2.js}"></script>
+    <script th:src="@{/resource/scripts/jquery-1.7.1.min.js}"></script>
+    <script th:src="@{/resource/scripts/js/certificate_Type.js}"></script>
+    <style>
+
+      #div_table table{position: absolute;width:960px;}
+      #div_table table tr:nth-of-type(1){background:linear-gradient(to top,gray,#FFFFFF);}
+      table{ border:1px solid ;  border-collapse: collapse;/*边框会合并为一个单一的边框*/}
+      td div:nth-of-type(1){display: flex;justify-content:space-around;}
+      table tr td{border: 1px solid gray;}
+      #div_table .div{top: 260px;position: absolute;width:960px;height: 40px;display: flex;justify-content: center;}
+      .div div{border:1px solid;border-radius: 10px;}
+      .div div span{float: left;width: 40px;text-align: center;line-height: 40px;margin: 0;padding: 0;display: inline-block; border-right: 1px solid; }
+      .div div span:nth-of-type(1){border-left: 0; }
+      .div div span:last-child{  border-right: 0;}
+      #esc{position: absolute;width: 500px;top: 35px;left: 780px;}
+      a {text-decoration: none;color: black;}
+      .div div span:hover{cursor: pointer; background: ghostwhite;}
+      .start{color:greenyellow;}
+      .stop{color: red;}
+      #insert,#update{display: none;}
+      #insert div{margin: 10px 0;}
+      #update div{margin: 10px 0;}
+      #insert,#update{position: absolute;border:1px solid;z-index: 10;background: #eeeeee; padding: 20px;left: 300px; }
+    </style>
+
+  </head>
+  <body>
+
+  <div  id="div_insert">
+    <img th:src="@{/images/u5.png}">
+    <div id="insert">
+      <div><strong>您正在进行添加操作</strong></div>
+      <div>类型名称:<input type="text" name="insertType"></div>
+      <div>是否启用:
+        <select id="insertSelect">
+          <option selected value="0">启用</option>
+          <option value="1">不启用</option>
+        </select>
+        <input type="button" class="insertSub" value="保存"/>
+        <input type="button"  class="esc" value="取消"/>
+      </div>
+    </div>
+    <div id="update">
+      <div><strong>您正在进行添加操作</strong></div>
+      <div><input type="text" name="id" style="display: none"></div>
+      <div>类型名称:<input type="text" name="upType"></div>
+      <div>是否启用:
+        <select id="upSelect">
+          <option selected value="0">启用</option>
+          <option value="1">不启用</option>
+        </select>
+        <input type="button" class="upSub" value="保存"/>
+        <input type="button"  class="esc" value="取消"/>
+      </div>
+    </div>
+  </div>
+
+  <div id="div_table">
+      <table style="text-align: center">
+        <tr>
+          <td>序号</td>
+          <td>配置类型</td>
+          <td>是否启用</td>
+          <td colspan="2">操作</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>国内</td>
+          <td>启用</td>
+          <td>
+            <div>
+              <div><a href="javascript:void(0)" class="up" name="配置类型" id="id">修改</a></div>
+              <div><a href="#">删除</a> </div>
+            </div>
+          </td>
+        </tr>
+
+      </table>
+      <div class="div">
+        <div>
+          <span>首页</span>
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>尾页</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

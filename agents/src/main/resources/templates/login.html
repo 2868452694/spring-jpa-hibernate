@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<html>
+  <head>
+    <title>登陆页面</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <script th:src="@{/resource/scripts/jquery-1.4.2.js}"></script>
+    <script th:src="@{/resource/scripts/js/login.js}"></script>
+      <style>
+          form{
+              position:absolute;
+              left:460px;
+              top: 266px;
+              width:150px;
+              height:233px;
+              display: flex;
+              flex-direction:column;
+
+          }
+          form>*{margin: 5px;margin-right:0;}
+
+          input[type=submit]{
+              width: 100px;
+              margin: 1px 5px 5px -5px;
+          }
+        #message{
+          color: red;
+          font-size: 18px;
+        }
+      </style>
+  </head>
+  <body>
+
+    <!-- Unnamed (图片) -->
+    <div id="u0" class="ax_图片">
+      <img id="u0_img" class="img " th:src="@{/images/background.png}"/>
+      <!-- Unnamed () -->
+      <div id="u1" class="text"></div>
+    </div>
+
+    <!-- Unnamed (图片) -->
+    <div id="u2" class="ax_图片">
+      <!--<img id="u2_img" class="img" th:src="@{/images/u2.png}"/>-->
+      <!-- Unnamed () -->
+      <div id="u3" class="text"></div>
+    </div>
+
+    <form>
+      <div id="message"></div>
+      <input type="text" name="username">
+      <input type="password" name="password">
+      <input type="button" id="su" value="登录">
+    </form>
+    <!-- Unnamed (图片) -->
+       <!-- <div id="u4" class="ax_图片">
+          <img id="u4_img" class="imgth: " sr@{c="images/登陆页面/u4.png}"/>
+          &lt;!&ndash; Unnamed () &ndash;&gt;
+          <div id="u5" class="text"></div>
+-->
+  </body>
+</html>
